@@ -36,7 +36,7 @@ export function FamilyPage() {
               className="flex items-center justify-between rounded-lg border border-slate-200 px-4 py-3"
             >
               <span className="text-sm text-slate-800">
-                {(m as any).profiles?.name || m.user_id.slice(0, 8)}
+                {m.profiles?.name || m.user_id.slice(0, 8)}
               </span>
               <span className="text-xs text-slate-400">
                 {m.role === 'admin' ? '管理员' : '成员'}

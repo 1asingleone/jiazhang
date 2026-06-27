@@ -134,7 +134,7 @@ export function StatsPage() {
         </div>
       )}
 
-      {memberRanking.length > 1 && (
+      {memberRanking.length > 0 && members && members.length > 1 && (
         <div className="rounded-xl border border-slate-200 p-4">
           <h3 className="mb-3 text-sm font-semibold text-slate-700">成员支出排行</h3>
           <div className="flex flex-col gap-2">

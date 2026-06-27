@@ -19,6 +19,10 @@ export interface FamilyMember {
   user_id: string
   role: 'admin' | 'member'
   joined_at: string
+  profiles?: {
+    name: string
+    avatar_url: string | null
+  }
 }
 
 export interface Transaction {

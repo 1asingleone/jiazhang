@@ -82,7 +82,7 @@ export function useFamilyMembers(familyId: string | undefined) {
         .eq('family_id', familyId)
 
       if (error) throw error
-      return data as (FamilyMember & { profiles: { name: string; avatar_url: string | null } })[]
+      return data as FamilyMember[]
     },
     enabled: !!familyId && !!supabase,
   })

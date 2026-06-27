@@ -23,6 +23,13 @@ const CATEGORIES = [
 
 export { CATEGORIES }
 
+function getMonthRange(month: string) {
+  const [y, m] = month.split('-').map(Number)
+  const start = `${month}-01`
+  const nextMonth = m === 12 ? `${y + 1}-01-01` : `${y}-${String(m + 1).padStart(2, '0')}-01`
+  return { start, end: nextMonth }
+}
+
 export function useTransactions(month: string) {
   const { user } = useAuth()
   const { data: family } = useMyFamily()
@@ -32,12 +39,13 @@ export function useTransactions(month: string) {
     queryFn: async () => {
       if (!family?.id || !supabase) return []
 
+      const { start, end } = getMonthRange(month)
       const { data, error } = await supabase
         .from('transactions')
         .select('*')
         .eq('family_id', family.id)
-        .gte('transaction_date', `${month}-01`)
-        .lt('transaction_date', `${month}-32`)
+        .gte('transaction_date', start)
+        .lt('transaction_date', end)
         .order('transaction_date', { ascending: false })
         .order('created_at', { ascending: false })
 
